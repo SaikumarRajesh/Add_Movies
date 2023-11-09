@@ -22,7 +22,7 @@ app.post('/movies', async (req,res)=>{
       await movie.save();
       res.send({msg:"movie created successfully"})
     }
-    catch{
+    catch(err){
       console.log(err);
       res.status(500).send('Internal Server Error');
     } 
@@ -33,7 +33,7 @@ app.post('/movies', async (req,res)=>{
     try{
       res.send(await moviemodel.find())
     }
-    catch{
+    catch(err){
       console.log(err);
       res.status(500).send('Internal Server Error');
     } 
