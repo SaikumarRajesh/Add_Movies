@@ -6,6 +6,8 @@ import { movie as moviemodel } from './dbmodel/model.js';
 
 import cors from 'cors'
 
+import {v4} from 'uuid'
+
 const app = express();
 
 const port =process.env.PORT|| 4000;
@@ -22,7 +24,7 @@ await dbconnect();
 ///Adding Movies
 app.post('/movies', async (req,res)=>{
     try{
-        const movie = new moviemodel(req.body)
+        const movie = new moviemodel({...req.body, Movie_Id: v4()})
       await movie.save();
       res.send({msg:"movie created successfully"})
     }
